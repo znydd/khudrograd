@@ -3,7 +3,7 @@ import numpy as np
 class Tensor:
 
     def __init__(self, data):
-        self.data = data if isinstance(data, np.ndarray) else np.array(data)
+        self.data = data if isinstance(data, Tensor) else Tensor(data)
 
     def __add__(self,other):
         return Tensor(self.data + other.data)
@@ -13,10 +13,10 @@ class Tensor:
     
     def __repr__(self):
         return f"tensor({self.data})"
-    
+
 if __name__ == "__main__":
-    x = Tensor([3])
-    y = Tensor([9])
+    x = Tensor(3)
+    y = Tensor(9)
     z = x*y 
     print(z)
 
